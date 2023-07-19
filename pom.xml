@@ -8,6 +8,18 @@
   <version>1</version>
   <packaging>tar.gz</packaging>
 <build>
+   <plugins>
+      <plugin>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <version>2.5.3</version>
+            <configuration>
+               <descriptors>
+                  <descriptor>website/plugin/targz.xml</descriptor>
+               </descriptors>
+               <tarLongFileMode>posix</tarLongFileMode>
+            </configuration>
+      </plugin>
+   </plugins>
     <resources>
         <resource>
             <directory>website</directory>
