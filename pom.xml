@@ -6,7 +6,7 @@
   <groupId>io.demoapp</groupId>
   <artifactId>demoapp-weather</artifactId>
   <version>1</version>
-
+  <packaging>pom</packaging>
 <build>
    <resources>
         <resource>
