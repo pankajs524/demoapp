@@ -6,21 +6,9 @@
   <groupId>io.demoapp</groupId>
   <artifactId>demoapp-weather</artifactId>
   <version>1</version>
-  <packaging>tar.gz</packaging>
+  <packaging>rar</packaging>
 <build>
-   <plugins>
-      <plugin>
-            <artifactId>maven-assembly-plugin</artifactId>
-            <version>2.5.3</version>
-            <configuration>
-               <descriptors>
-                  <descriptor>website/plugin/targz.xml</descriptor>
-               </descriptors>
-               <tarLongFileMode>posix</tarLongFileMode>
-            </configuration>
-      </plugin>
-   </plugins>
-    <resources>
+   <resources>
         <resource>
             <directory>website</directory>
             <filtering>true</filtering>
