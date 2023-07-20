@@ -1,0 +1,47 @@
+Step 1 : aws eks update-kubeconfig --region us-east-2 --name <<CLUSTER_Name>>
+
+Step 2 : kubectl apply -k "github.com/kubernetes-sigs/aws-efs-csi-driver/deploy/kubernetes/overlays/stable/?ref=master"
+
+Step 3 : aws eks describe-cluster --name <<CLUSTER_Name>> --query "cluster.resourcesVpcConfig.vpcId" --output text 
+
+Step 4 : aws ec2 describe-vpcs --vpc-ids <<VPC-ID>> --query "Vpcs[].CidrBlock" --output text
+
+Step 5 : aws ec2 create-security-group --description efs-test-sg --group-name efs-sg --vpc-id <<VPC-ID>>
+
+Step 6 : aws ec2 authorize-security-group-ingress --group-id <<SG-ID>> --protocol tcp --port 2049 --cidr <<CIDR-BLOCK>>
+
+Step 7 : aws efs create-file-system --creation-token eks-efs 
+
+Step 8 : aws efs create-mount-target --file-system-id <<FS-ID>> --subnet-id <<EC2-SUBNETID>> --security-group <<SG-ID>>
+
+Step 9 : aws efs describe-file-systems --query "FileSystems[*].FileSystemId" --output text
+
+-------------------------Build Jenkins Instance----------------
+
+Step 10 : kubectl create ns jenkins
+
+Step 11 : kubectl get storageclass
+
+# create volume
+Step 12 : kubectl apply -f ./jenkins/jenkins.pv.yaml 
+Step 13 : kubectl get pv
+
+# create volume claim
+Step 14 : kubectl apply -n jenkins -f ./jenkins/jenkins.pvc.yaml
+Step 15 : kubectl -n jenkins get pvc
+
+# rbac
+Step 16 : kubectl apply -n jenkins -f ./jenkins/jenkins.rbac.yaml 
+
+Step 17 : kubectl apply -n jenkins -f ./jenkins/jenkins.deployment.yaml
+
+Step 18 : kubectl -n jenkins get pods
+
+Step 19 : kubectl apply -n jenkins -f ./jenkins/jenkins.service.yaml 
+
+-----------------------------------
+# get the inital admin password and copy
+Step 20 : kubectl -n jenkins exec -it <<JENKINS-POD>> cat /var/jenkins_home/secrets/initialAdminPassword
+
+Step 21 : kubectl port-forward -n jenkins jenkins-76f5554576-bgjlz 8080
+
