@@ -5,7 +5,7 @@ Description: Demo code/scripts to deploy a Javascript page to display current we
 - Create EKS storage
 - Deploy Jenkins on an EKS pod
 - Build sample app to show weather
-- Build docuker image
+- Build Docker image
 - Jenkins pipeline for CICD
 
 <h3>Toolset</h3>
@@ -55,7 +55,7 @@ Need to provision EFS storage for PODS to share data. The Jenkins folder contain
  <h1>Build sample app to show weather</h1>
  - Create a branch of "website" folder from the repo.
 
- <h1>Build docuker image</h1>
+ <h1>Build Docker image</h1>
  <ul><li>Login into DockerHub account ( sample docker login -u <<DOCKERHUB_USER>>)</li>
  <li>Using DockerFile to build (sample docker build -t demoweather:tagname . )</li>
  </ul>
