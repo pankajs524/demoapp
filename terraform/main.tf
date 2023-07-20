@@ -13,7 +13,7 @@ data "aws_availability_zones" "available" {}
 #}
 
 locals {
-  cluster_name = "pankaj2DemoCluster"
+  cluster_name = "DemoCluster"
 }
 
 #provider "kubernetes" {
@@ -38,7 +38,7 @@ module "eks-kubeconfig" {
 
   depends_on = [module.eks]
   #cluster_id =  module.eks.cluster_id
-  cluster_name = "pankaj2DemoCluster"
+  cluster_name = "DemoCluster"
   }
 
 resource "local_file" "kubeconfig" {
